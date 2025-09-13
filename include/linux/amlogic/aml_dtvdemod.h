@@ -49,7 +49,8 @@ static inline __maybe_unused struct dvb_frontend *aml_dtvdm_attach(
 }
 #endif
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 enum dtv_demod_type aml_get_dtvdemod_type(const char *name);
 int aml_get_dts_demod_config(struct device_node *node,
 		struct demod_config *cfg, int index);

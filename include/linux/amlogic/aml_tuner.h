@@ -37,7 +37,8 @@ struct tuner_module {
 	int (*detect)(const struct tuner_config *cfg);
 };
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 enum tuner_type aml_get_tuner_type(const char *name);
 int aml_get_dts_tuner_config(struct device_node *node,
 		struct tuner_config *cfg, int index);

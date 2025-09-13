@@ -1,7 +1,7 @@
 menu "AMLOGIC DVB EXTERN support"
 
 config AMLOGIC_DVB_EXTERN
-	bool "Amlogic dvb extern drivers"
+	tristate "Amlogic dvb extern drivers"
 	default N
 	help
 		select it to support amlogic dvb extern driver.

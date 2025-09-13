@@ -300,7 +300,8 @@ int frontend_probe(struct platform_device *pdev)
 		ts_process(pdev);
 #endif
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 	ret = dvb_extern_register_frontend(&advb->dvb_adapter);
 	if (ret) {
 		dprint_i("aml register dvb frontend failed.\n");
@@ -338,7 +339,8 @@ void frontend_config_ts_sid(void)
 
 int frontend_remove(void)
 {
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 	dvb_extern_unregister_frontend();
 #endif
 

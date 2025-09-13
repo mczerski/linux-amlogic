@@ -207,7 +207,8 @@ struct aml_tuner {
 };
 
 /** generic AML DVB attach function. */
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 #define aml_dvb_attach(FUNCTION, ARGS...) ({ \
 	void *__r = NULL; \
 	typeof(&FUNCTION) __a = symbol_request(FUNCTION); \
@@ -259,7 +260,8 @@ static inline struct dvb_frontend *name##_attach(struct dvb_frontend *fe,\
 #define AML_MAX_DELSYS   (32)
 #define AML_MAX_FE       (32)
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 const char *v4l2_std_to_str(v4l2_std_id std);
 
 void aml_ktime_get_ts(struct timespec *ts);

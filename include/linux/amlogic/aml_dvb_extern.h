@@ -86,7 +86,8 @@ struct dvb_demod {
 	int (*pre_init)(struct dvb_demod *demod);
 };
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 struct dvb_frontend *dvb_tuner_attach(struct dvb_frontend *fe);
 int dvb_tuner_detach(void);
 
