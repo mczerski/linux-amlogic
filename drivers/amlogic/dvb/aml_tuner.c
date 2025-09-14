@@ -18,30 +18,30 @@
 #include <linux/i2c.h>
 #include <linux/amlogic/aml_tuner.h>
 
-AML_TUNER_ATTACH_FUNCTION(si2176);
-AML_TUNER_ATTACH_FUNCTION(si2196);
-AML_TUNER_ATTACH_FUNCTION(fq1216);
-AML_TUNER_ATTACH_FUNCTION(htm);
-AML_TUNER_ATTACH_FUNCTION(ctc703);
-AML_TUNER_ATTACH_FUNCTION(si2177);
-AML_TUNER_ATTACH_FUNCTION(r840);
-AML_TUNER_ATTACH_FUNCTION(si2157);
-AML_TUNER_ATTACH_FUNCTION(si2151);
-AML_TUNER_ATTACH_FUNCTION(mxl661);
-AML_TUNER_ATTACH_FUNCTION(mxl608);
-AML_TUNER_ATTACH_FUNCTION(si2159);
-AML_TUNER_ATTACH_FUNCTION(r842);
-AML_TUNER_ATTACH_FUNCTION(atbm2040);
-AML_TUNER_ATTACH_FUNCTION(atbm253);
-AML_TUNER_ATTACH_FUNCTION(si2124);
-AML_TUNER_ATTACH_FUNCTION(av2011);
-AML_TUNER_ATTACH_FUNCTION(av2012);
-AML_TUNER_ATTACH_FUNCTION(av2018);
-AML_TUNER_ATTACH_FUNCTION(mxl603);
-AML_TUNER_ATTACH_FUNCTION(r836);
-AML_TUNER_ATTACH_FUNCTION(r848);
-AML_TUNER_ATTACH_FUNCTION(rt710);
-AML_TUNER_ATTACH_FUNCTION(r850);
+AML_TUNER_ATTACH_FUNCTION(aml_si2176);
+AML_TUNER_ATTACH_FUNCTION(aml_si2196);
+AML_TUNER_ATTACH_FUNCTION(aml_fq1216);
+AML_TUNER_ATTACH_FUNCTION(aml_htm);
+AML_TUNER_ATTACH_FUNCTION(aml_ctc703);
+AML_TUNER_ATTACH_FUNCTION(aml_si2177);
+AML_TUNER_ATTACH_FUNCTION(aml_r840);
+AML_TUNER_ATTACH_FUNCTION(aml_si2157);
+AML_TUNER_ATTACH_FUNCTION(aml_si2151);
+AML_TUNER_ATTACH_FUNCTION(aml_mxl661);
+AML_TUNER_ATTACH_FUNCTION(aml_mxl608);
+AML_TUNER_ATTACH_FUNCTION(aml_si2159);
+AML_TUNER_ATTACH_FUNCTION(aml_r842);
+AML_TUNER_ATTACH_FUNCTION(aml_atbm2040);
+AML_TUNER_ATTACH_FUNCTION(aml_atbm253);
+AML_TUNER_ATTACH_FUNCTION(aml_si2124);
+AML_TUNER_ATTACH_FUNCTION(aml_av2011);
+AML_TUNER_ATTACH_FUNCTION(aml_av2012);
+AML_TUNER_ATTACH_FUNCTION(aml_av2018);
+AML_TUNER_ATTACH_FUNCTION(aml_mxl603);
+AML_TUNER_ATTACH_FUNCTION(aml_r836);
+AML_TUNER_ATTACH_FUNCTION(aml_r848);
+AML_TUNER_ATTACH_FUNCTION(aml_rt710);
+AML_TUNER_ATTACH_FUNCTION(aml_r850);
 
 static struct dvb_frontend *aml_tuner_attach(const struct tuner_module *module,
 		struct dvb_frontend *fe, const struct tuner_config *cfg);
@@ -425,100 +425,100 @@ static struct dvb_frontend *aml_attach_detach_tuner(
 
 	switch (type) {
 	case AM_TUNER_SI2176:
-		attach ? (p = aml_dvb_attach(si2176_attach, fe, cfg)) :
-				aml_dvb_detach(si2176_attach);
+		attach ? (p = aml_dvb_attach(aml_si2176_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2176_attach);
 		break;
 	case AM_TUNER_SI2196:
-		attach ? (p = aml_dvb_attach(si2196_attach, fe, cfg)) :
-				aml_dvb_detach(si2196_attach);
+		attach ? (p = aml_dvb_attach(aml_si2196_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2196_attach);
 		break;
 	case AM_TUNER_FQ1216:
-		attach ? (p = aml_dvb_attach(fq1216_attach, fe, cfg)) :
-				aml_dvb_detach(fq1216_attach);
+		attach ? (p = aml_dvb_attach(aml_fq1216_attach, fe, cfg)) :
+				aml_dvb_detach(aml_fq1216_attach);
 		break;
 	case AM_TUNER_HTM:
-		attach ? (p = aml_dvb_attach(htm_attach, fe, cfg)) :
-				aml_dvb_detach(htm_attach);
+		attach ? (p = aml_dvb_attach(aml_htm_attach, fe, cfg)) :
+				aml_dvb_detach(aml_htm_attach);
 		break;
 	case AM_TUNER_CTC703:
-		attach ? (p = aml_dvb_attach(ctc703_attach, fe, cfg)) :
-				aml_dvb_detach(ctc703_attach);
+		attach ? (p = aml_dvb_attach(aml_ctc703_attach, fe, cfg)) :
+				aml_dvb_detach(aml_ctc703_attach);
 		break;
 	case AM_TUNER_SI2177:
-		attach ? (p = aml_dvb_attach(si2177_attach, fe, cfg)) :
-				aml_dvb_detach(si2177_attach);
+		attach ? (p = aml_dvb_attach(aml_si2177_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2177_attach);
 		break;
 	case AM_TUNER_R840:
-		attach ? (p = aml_dvb_attach(r840_attach, fe, cfg)) :
-				aml_dvb_detach(r840_attach);
+		attach ? (p = aml_dvb_attach(aml_r840_attach, fe, cfg)) :
+				aml_dvb_detach(aml_r840_attach);
 		break;
 	case AM_TUNER_SI2157:
-		attach ? (p = aml_dvb_attach(si2157_attach, fe, cfg)) :
-				aml_dvb_detach(si2157_attach);
+		attach ? (p = aml_dvb_attach(aml_si2157_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2157_attach);
 		break;
 	case AM_TUNER_SI2151:
-		attach ? (p = aml_dvb_attach(si2151_attach, fe, cfg)) :
-				aml_dvb_detach(si2151_attach);
+		attach ? (p = aml_dvb_attach(aml_si2151_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2151_attach);
 		break;
 	case AM_TUNER_MXL661:
-		attach ? (p = aml_dvb_attach(mxl661_attach, fe, cfg)) :
-				aml_dvb_detach(mxl661_attach);
+		attach ? (p = aml_dvb_attach(aml_mxl661_attach, fe, cfg)) :
+				aml_dvb_detach(aml_mxl661_attach);
 		break;
 	case AM_TUNER_MXL608:
-		attach ? (p = aml_dvb_attach(mxl608_attach, fe, cfg)) :
-				aml_dvb_detach(mxl608_attach);
+		attach ? (p = aml_dvb_attach(aml_mxl608_attach, fe, cfg)) :
+				aml_dvb_detach(aml_mxl608_attach);
 		break;
 	case AM_TUNER_SI2159:
-		attach ? (p = aml_dvb_attach(si2159_attach, fe, cfg)) :
-				aml_dvb_detach(si2159_attach);
+		attach ? (p = aml_dvb_attach(aml_si2159_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2159_attach);
 		break;
 	case AM_TUNER_R842:
-		attach ? (p = aml_dvb_attach(r842_attach, fe, cfg)) :
-				aml_dvb_detach(r842_attach);
+		attach ? (p = aml_dvb_attach(aml_r842_attach, fe, cfg)) :
+				aml_dvb_detach(aml_r842_attach);
 		break;
 	case AM_TUNER_ATBM2040:
-		attach ? (p = aml_dvb_attach(atbm2040_attach, fe, cfg)) :
-				aml_dvb_detach(atbm2040_attach);
+		attach ? (p = aml_dvb_attach(aml_atbm2040_attach, fe, cfg)) :
+				aml_dvb_detach(aml_atbm2040_attach);
 		break;
 	case AM_TUNER_ATBM253:
-		attach ? (p = aml_dvb_attach(atbm253_attach, fe, cfg)) :
-				aml_dvb_detach(atbm253_attach);
+		attach ? (p = aml_dvb_attach(aml_atbm253_attach, fe, cfg)) :
+				aml_dvb_detach(aml_atbm253_attach);
 		break;
 	case AM_TUNER_SI2124:
-		attach ? (p = aml_dvb_attach(si2124_attach, fe, cfg)) :
-				aml_dvb_detach(si2124_attach);
+		attach ? (p = aml_dvb_attach(aml_si2124_attach, fe, cfg)) :
+				aml_dvb_detach(aml_si2124_attach);
 		break;
 	case AM_TUNER_AV2011:
-		attach ? (p = aml_dvb_attach(av2011_attach, fe, cfg)) :
-				aml_dvb_detach(av2011_attach);
+		attach ? (p = aml_dvb_attach(aml_av2011_attach, fe, cfg)) :
+				aml_dvb_detach(aml_av2011_attach);
 		break;
 	case AM_TUNER_AV2012:
-		attach ? (p = aml_dvb_attach(av2012_attach, fe, cfg)) :
-				aml_dvb_detach(av2012_attach);
+		attach ? (p = aml_dvb_attach(aml_av2012_attach, fe, cfg)) :
+				aml_dvb_detach(aml_av2012_attach);
 		break;
 	case AM_TUNER_AV2018:
-		attach ? (p = aml_dvb_attach(av2018_attach, fe, cfg)) :
-				aml_dvb_detach(av2018_attach);
+		attach ? (p = aml_dvb_attach(aml_av2018_attach, fe, cfg)) :
+				aml_dvb_detach(aml_av2018_attach);
 		break;
 	case AM_TUNER_MXL603:
-		attach ? (p = aml_dvb_attach(mxl603_attach, fe, cfg)) :
-				aml_dvb_detach(mxl603_attach);
+		attach ? (p = aml_dvb_attach(aml_mxl603_attach, fe, cfg)) :
+				aml_dvb_detach(aml_mxl603_attach);
 		break;
 	case AM_TUNER_R836:
-		attach ? (p = aml_dvb_attach(r836_attach, fe, cfg)) :
-				aml_dvb_detach(r836_attach);
+		attach ? (p = aml_dvb_attach(aml_r836_attach, fe, cfg)) :
+				aml_dvb_detach(aml_r836_attach);
 		break;
 	case AM_TUNER_R848:
-		attach ? (p = aml_dvb_attach(r848_attach, fe, cfg)) :
-				aml_dvb_detach(r848_attach);
+		attach ? (p = aml_dvb_attach(aml_r848_attach, fe, cfg)) :
+				aml_dvb_detach(aml_r848_attach);
 		break;
 	case AM_TUNER_RT710:
-		attach ? (p = aml_dvb_attach(rt710_attach, fe, cfg)) :
-				aml_dvb_detach(rt710_attach);
+		attach ? (p = aml_dvb_attach(aml_rt710_attach, fe, cfg)) :
+				aml_dvb_detach(aml_rt710_attach);
 		break;
 	case AM_TUNER_R850:
-		attach ? (p = aml_dvb_attach(r850_attach, fe, cfg)) :
-				aml_dvb_detach(r850_attach);
+		attach ? (p = aml_dvb_attach(aml_r850_attach, fe, cfg)) :
+				aml_dvb_detach(aml_r850_attach);
 		break;
 	default:
 		p = NULL;
