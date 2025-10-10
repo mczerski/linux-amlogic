@@ -21,6 +21,7 @@
 #include <linux/amlogic/aml_demod_common.h>
 #include <linux/amlogic/aml_tuner.h>
 #include "avl6862.h"
+#include "cxd2878.h"
 #include "mxl603.h"
 
 struct dvb_frontend *aml_avl68xx_attach(const struct demod_config *cfg)
@@ -52,6 +53,53 @@ struct dvb_frontend *aml_avl68xx_attach(const struct demod_config *cfg)
 
 	return fe;
 }
+EXPORT_SYMBOL_GPL(aml_avl68xx_attach);
+
+struct dvb_frontend *aml_cxd2856_attach(const struct demod_config *cfg)
+{
+	struct cxd2878_config cxd2878cfg = {
+		.addr_slvt = cfg->i2c_addr,
+		.xtal = cfg->xtal, /* XTAL freq: 0: 16 MHz, 1: 24 MHz, 2: 32 MHz */
+		.ts_mode = cfg->ts_out_mode, /* TS out mode: 0: Serial output, 1: Parallel output (Default) */
+		.ts_ser_data = cfg->ts_data_pin, /* Serial output pin of TS data. 0: Output from TSDATA0, 1: Output from TSDATA7 (Default) */
+		.ts_clk = cfg->ts_clk, /* Serial TS clock gated on valid TS data or is continuous. 0: Gated, 1: Continuous (Default) */
+		.ts_clk_mask = 1, /* Disable/Enable TS clock during specified TS region. 
+							bit flags: ( can be bitwise ORed )
+							- 0 : Always Active
+							- 1 : Disable during TS packet gap (default)
+							- 2 : Disable during TS parity (default)
+							- 4 : Disable during TS payload
+							- 8 : Disable during TS header
+							- 16: Disable during TS sync */
+		.ts_valid = 0, /* Disable/Enable TSVALID during specified TS region.
+							bit flags: ( can be bitwise ORed )
+							- 0 : Always Active
+							- 1 : Disable during TS packet gap (default)
+							- 2 : Disable during TS parity (default)
+							- 4 : Disable during TS payload
+							- 8 : Disable during TS header
+							- 16: Disable during TS sync */
+		.atscCoreDisable = 0,
+		.lock_flag = 1,
+	};
+
+	struct dvb_frontend *fe = cxd2878_attach(&cxd2878cfg, cfg->i2c_adap);
+	if (IS_ERR_OR_NULL(fe))
+		return NULL;
+
+	if (cfg->tuner0.id != AM_TUNER_NONE) {
+		const struct tuner_module * tuner = aml_get_tuner_module(cfg->tuner0.id);
+		if (tuner->attach(tuner, fe, &cfg->tuner0) == NULL) {
+			pr_err("CXD2856: failed to attach tuner0 %s\n", tuner->name);
+		}
+	}
+	else {
+		pr_err("CXD2856: Missing tuner0 config\n");
+	}
+
+	return fe;
+}
+EXPORT_SYMBOL_GPL(aml_cxd2856_attach);
 
 struct dvb_frontend *aml_mxl603_attach(struct dvb_frontend *fe,
 				       const struct tuner_config *cfg)
@@ -91,13 +139,7 @@ struct dvb_frontend *aml_mxl603_attach(struct dvb_frontend *fe,
 	};
 	return mxl603_attach(fe, cfg->i2c_adap, cfg->i2c_addr, &mxl603cfg);
 }
-
-static int __init aml_dvb_extern_wrappers_init(void)
-{
-	demod_attach_register_cb(AM_DTV_DEMOD_AVL68xx, aml_avl68xx_attach);
-	tuner_attach_register_cb(AM_TUNER_MXL603, aml_mxl603_attach);
-	return 0;
-}
+EXPORT_SYMBOL_GPL(aml_mxl603_attach);
 
 MODULE_DESCRIPTION("DVB demodulator driver wrappers for aml_dvb_extern module");
 MODULE_AUTHOR("Marek Czerski (ma.czerski@gmail.com)");

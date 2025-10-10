@@ -12,7 +12,8 @@ aml_dvb_extern-objs = \
 		aml_dvb_extern_driver.o \
 		aml_dvb_extern_wrappers.o \
 		avl6862.o \
-		mxl603.o
+		mxl603.o \
+		cxd2878.o
 
 ccflags-y += -I.
 ccflags-y += -I$(srctree)/drivers/media/dvb-core
