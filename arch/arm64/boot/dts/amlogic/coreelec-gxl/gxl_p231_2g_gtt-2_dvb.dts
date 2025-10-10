@@ -1,0 +1,96 @@
+#include "gxl_p231_2g.dts"
+
+/{
+	coreelec-dt-id = "gxl_p231_2g_gtt-2_dvb";
+
+	dvb-extern {
+		compatible = "amlogic, dvb-extern";
+		status = "okay";
+
+		fe_num = <1>;
+		fe0_demod = "cxd2856";
+		fe0_i2c_adap_id = <&i2c1>;
+		fe0_demod_i2c_addr = <0x6c>;
+		fe0_ts  = <0>;
+		fe0_ts_out_mode = <1>;
+		fe0_tuner0 = <0>;
+		fe0_demod_xtal = <1>;
+		fe0_ts_clk = <1>;
+
+		tuner_num = <1>;
+		tuner0_name = "mxl603_tuner";
+		tuner0_i2c_adap = <&i2c1>;
+		tuner0_i2c_addr = <0x63>;
+		tuner0_xtal = <0>;
+		tuner0_if_hz = <6>;
+		tuner0_if_agc = <0>;
+		tuner0_if_amp = <11>;
+		tuner0_xtal_cap = <16>;
+		tuner0_if_invert = <1>;
+		tuner0_lt_out = <0>;
+		tuner0_xtal_mode = <0>;
+		tuner0_dual_power = <0>;
+	};
+
+	dvb-demux {
+		compatible = "amlogic, dvb-demux";
+		status = "okay";
+		ts0 = "parallel";
+		ts0_control = <0x0>;
+		ts0_invert = <0x0>;
+		pinctrl-names = "p_ts0", "s_ts0";
+		pinctrl-0 = <&dvb_p_ts0_pins>;
+		pinctrl-1 = <&dvb_s_ts0_pins>;
+		clocks = <&clkc CLKID_DEMUX
+		&clkc CLKID_ASYNC_FIFO
+		&clkc CLKID_AHB_ARB0
+		&clkc CLKID_HIU_IFACE>;
+		clock-names = "demux", "asyncfifo", "ahbarb0", "uparsertop";
+
+		interrupts = <GIC_SPI 23 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI  5 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 53 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 19 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "demux0_irq", "demux1_irq", "demux2_irq", "dvr0_irq", "dvr1_irq";
+	};
+};
+
+&pinctrl_periphs {
+	dvb_p_ts0_pins: dvb_p_ts0_pins {
+			tsin_a {
+				groups = "tsin_d0_a_dv0",
+				"tsin_d1_7_a_dv1_7",
+				"tsin_clk_a_dv8",
+				"tsin_sop_a_dv9",
+				"tsin_d_valid_a_dv10";
+				function = "tsin_a";
+			};
+		};
+	dvb_s_ts0_pins: dvb_s_ts0_pins {
+		tsin_a {
+			groups ="tsin_d0_a_dv0",
+				"tsin_clk_a_dv8",
+				"tsin_sop_a_dv9",
+				"tsin_d_valid_a_dv10";
+			function = "tsin_a";
+		};
+	};
+};
+
+&i2c0 {
+	status = "okay";
+};
+
+&i2c1 {
+	status = "okay";
+};
+
+&i2c2 {
+	status = "okay";
+};
+
+&i2c3 {
+	status = "okay";
+};
+

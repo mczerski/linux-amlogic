@@ -82,6 +82,7 @@ dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_1g_m8s_dvb-s2.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_2g.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_2g_dvb.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_2g_dvb_ser.dtb
+dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_2g_gtt-2_dvb.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p231_c300.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p281_1g.dtb
 dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p281_1g_a95xr2.dtb
