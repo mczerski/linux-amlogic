@@ -23,6 +23,7 @@
 #include "avl6862.h"
 #include "cxd2878.h"
 #include "mxl603.h"
+#include "m88rs6060.h"
 
 struct dvb_frontend *aml_avl68xx_attach(const struct demod_config *cfg)
 {
@@ -100,6 +101,20 @@ struct dvb_frontend *aml_cxd2856_attach(const struct demod_config *cfg)
 	return fe;
 }
 EXPORT_SYMBOL_GPL(aml_cxd2856_attach);
+
+struct dvb_frontend *aml_m88dm6k_attach(const struct demod_config *cfg)
+{
+	struct m88rs6060_config m88rs6060cfg = {
+		.demod_address = cfg->i2c_addr,
+		.pin_ctrl = 0x82,
+		.ci_mode = 0,
+		.ts_mode = 0,
+	};
+
+	return m88rs6060_attach(&m88rs6060cfg, cfg->i2c_adap);
+}
+
+EXPORT_SYMBOL_GPL(aml_m88dm6k_attach);
 
 struct dvb_frontend *aml_mxl603_attach(struct dvb_frontend *fe,
 				       const struct tuner_config *cfg)
